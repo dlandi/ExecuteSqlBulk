@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace ExecuteSqlBulk
 {
     internal class SqlBulkInsert : SqlBulkBase
     {
         /// <summary>
-        /// 
+        /// Constructor
         /// </summary>
         /// <param name="connection"></param>
         /// <param name="tran"></param>
@@ -16,7 +16,7 @@ namespace ExecuteSqlBulk
         }
 
         /// <summary>
-        /// 批量插入数据
+        /// Bulk insert data
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="destinationTableName"></param>

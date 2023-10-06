@@ -13,7 +13,7 @@ namespace ExecuteSqlBulk
     public static class QueryExtension
     {
         /// <summary>
-        /// 删除数据
+        /// Delete data
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="db"></param>
@@ -28,7 +28,7 @@ namespace ExecuteSqlBulk
         }
 
         /// <summary>
-        /// 基于字段匹配集合查询数据（获取首条FirstOrDefault，排序OrderBy）
+        /// Query data based on field match set (get the first record using FirstOrDefault, sort using OrderBy)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="db"></param>
@@ -47,7 +47,7 @@ namespace ExecuteSqlBulk
         }
 
         /// <summary>
-        /// 基于字段匹配集合查询数据（获取首条FirstOrDefault，排序OrderBy）
+        /// Query data based on field match set (get the first record using FirstOrDefault, sort using OrderBy)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="db"></param>
@@ -67,12 +67,12 @@ namespace ExecuteSqlBulk
         }
 
         /// <summary>
-        /// 基于like关键词查询数据 （获取首条FirstOrDefault，排序OrderBy）
+        /// Query data based on "like" keyword (get the first record using FirstOrDefault, sort using OrderBy)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="db"></param>
-        /// <param name="likeColumns">like查询的列。eg:p=>new { p.Name, p.Text }</param>
-        /// <param name="keywords">关键词集合</param>
+        /// <param name="likeColumns">Columns for "like" query. e.g., p=>new { p.Name, p.Text }</param>
+        /// <param name="keywords">List of keywords</param>
         /// <param name="transaction"></param>
         /// <param name="commandTimeout"></param>
         /// <returns></returns>
@@ -87,7 +87,7 @@ namespace ExecuteSqlBulk
         }
 
         /// <summary>
-        /// 取列表
+        /// Retrieve list
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
@@ -111,7 +111,7 @@ namespace ExecuteSqlBulk
         }
 
         /// <summary>
-        /// 取第一条
+        /// Get the first record
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
@@ -140,7 +140,7 @@ namespace ExecuteSqlBulk
         }
 
         /// <summary>
-        /// 获取几条
+        /// Retrieve specified number of records
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
@@ -153,7 +153,7 @@ namespace ExecuteSqlBulk
         }
 
         /// <summary>
-        /// 顺序
+        /// Ascending order
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TResult"></typeparam>
@@ -167,7 +167,7 @@ namespace ExecuteSqlBulk
         }
 
         /// <summary>
-        /// 顺序
+        /// Ascending order
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TResult"></typeparam>
@@ -181,7 +181,7 @@ namespace ExecuteSqlBulk
         }
 
         /// <summary>
-        /// 倒序
+        /// Descending order
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TResult"></typeparam>
@@ -195,7 +195,7 @@ namespace ExecuteSqlBulk
         }
 
         /// <summary>
-        /// 倒序
+        /// Descending order
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TResult"></typeparam>

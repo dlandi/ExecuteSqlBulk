@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 
 namespace ExecuteSqlBulk
 {
     /// <summary>
-    /// 扩展
+    /// Extensions
     /// </summary>
     public static class SqlBulkExt
     {
         /// <summary>
-        /// 批量插入数据（支持NotMapped属性）
+        /// Bulk insert data (supports NotMapped attribute)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="db"></param>
@@ -41,26 +41,25 @@ namespace ExecuteSqlBulk
         }
 
         /// <summary>
-        /// 批量更新数据（支持NotMapped属性）
+        /// Bulk update data (supports NotMapped attribute)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TUpdateColumn"></typeparam>
         /// <typeparam name="TPkColumn"></typeparam>
         /// <param name="db"></param>
         /// <param name="dt"></param>
-        /// <param name="columnUpdateExpression">更新列集合</param>
-        /// <param name="columnPrimaryKeyExpression">主键列</param>
+        /// <param name="columnUpdateExpression">Update column collection</param>
+        /// <param name="columnPrimaryKeyExpression">Primary key column</param>
         /// <param name="tran"></param>
-        /// <returns>受影响行</returns>
+        /// <returns>Affected rows</returns>
         public static int BulkUpdate<T, TUpdateColumn, TPkColumn>(this SqlConnection db, List<T> dt, Expression<Func<T, TUpdateColumn>> columnUpdateExpression, Expression<Func<T, TPkColumn>> columnPrimaryKeyExpression, SqlTransaction tran = null) where T : new()
         {
             var tableName = typeof(T).Name;
             return BulkUpdate(db, tableName, dt, columnUpdateExpression, columnPrimaryKeyExpression, tran);
         }
 
-
         /// <summary>
-        /// 批量更新数据（支持NotMapped属性）
+        /// Bulk update data (supports NotMapped attribute)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TUpdateColumn"></typeparam>
@@ -68,31 +67,31 @@ namespace ExecuteSqlBulk
         /// <param name="db"></param>
         /// <param name="tableName"></param>
         /// <param name="dt"></param>
-        /// <param name="columnUpdateExpression">更新列集合</param>
-        /// <param name="columnPrimaryKeyExpression">主键列</param>
+        /// <param name="columnUpdateExpression">Update column collection</param>
+        /// <param name="columnPrimaryKeyExpression">Primary key column</param>
         /// <param name="tran"></param>
-        /// <returns>受影响行</returns>
+        /// <returns>Affected rows</returns>
         public static int BulkUpdate<T, TUpdateColumn, TPkColumn>(this SqlConnection db, string tableName, List<T> dt, Expression<Func<T, TUpdateColumn>> columnUpdateExpression, Expression<Func<T, TPkColumn>> columnPrimaryKeyExpression, SqlTransaction tran = null) where T : new()
         {
             if (columnPrimaryKeyExpression == null)
             {
-                throw new Exception("columnPrimaryKeyExpression不能为空");
+                throw new Exception("columnPrimaryKeyExpression cannot be null");
             }
             if (columnUpdateExpression == null)
             {
-                throw new Exception("columnInputExpression不能为空");
+                throw new Exception("columnInputExpression cannot be null");
             }
 
             var pkColumns = GetColumns(columnPrimaryKeyExpression);
             if (pkColumns.Count == 0)
             {
-                throw new Exception("主键不能为空");
+                throw new Exception("Primary key cannot be null");
             }
 
             var updateColumns = GetColumns(columnUpdateExpression);
             if (updateColumns.Count == 0)
             {
-                throw new Exception("更新列不能为空");
+                throw new Exception("Update columns cannot be null");
             }
 
             using (var sbu = new SqlBulkUpdate(db, tran))
@@ -102,7 +101,7 @@ namespace ExecuteSqlBulk
         }
 
         /// <summary>
-        /// 获取列
+        /// Get columns
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TColumn"></typeparam>
@@ -133,7 +132,7 @@ namespace ExecuteSqlBulk
         }
 
         /// <summary>
-        /// 批量删除数据（支持NotMapped属性）
+        /// Bulk delete data (supports NotMapped attribute)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TPk"></typeparam>
@@ -141,18 +140,18 @@ namespace ExecuteSqlBulk
         /// <param name="dt"></param>
         /// <param name="columnPrimaryKeyExpression"></param>
         /// <param name="tran"></param>
-        /// <returns>受影响行</returns>
+        /// <returns>Affected rows</returns>
         public static int BulkDelete<T, TPk>(this SqlConnection db, List<T> dt, Expression<Func<T, TPk>> columnPrimaryKeyExpression, SqlTransaction tran = null) where T : new()
         {
             if (columnPrimaryKeyExpression == null)
             {
-                throw new Exception("columnPrimaryKeyExpression不能为空");
+                throw new Exception("columnPrimaryKeyExpression cannot be null");
             }
 
             var pkColumns = GetColumns(columnPrimaryKeyExpression);
             if (pkColumns.Count == 0)
             {
-                throw new Exception("主键不能为空");
+                throw new Exception("Primary key cannot be null");
             }
 
             var tableName = typeof(T).Name;
@@ -163,7 +162,7 @@ namespace ExecuteSqlBulk
         }
 
         /// <summary>
-        /// 清空数据所有数据
+        /// Delete all data from the table
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="db"></param>

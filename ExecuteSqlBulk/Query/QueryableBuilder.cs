@@ -37,10 +37,10 @@ namespace ExecuteSqlBulk
         }
 
         /// <summary>
-        /// 批量获取列表(依赖Dapper)
+        /// Get list in bulk (depends on Dapper)
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="whereConditions">eg: new { Id =1 } 或 new { Id = new []{1, 2}.ToList() }</param>
+        /// <param name="whereConditions">eg: new { Id =1 } or new { Id = new []{1, 2}.ToList() }</param>
         /// <returns></returns>
         internal static IQuery<T> GetListByBulk<T>(object whereConditions)
         {
@@ -57,11 +57,11 @@ namespace ExecuteSqlBulk
         }
 
         /// <summary>
-        /// 批量获取列表(依赖Dapper)
+        /// Get list in bulk (depends on Dapper)
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="whereConditions">eg: new { Id =1 } 或 new { Id = new []{1, 2}.ToList() }</param>
-        /// <param name="selectColumns">eg: p => p.Id 或 p => new { p.Id, p.Name }</param>
+        /// <param name="whereConditions">eg: new { Id =1 } or new { Id = new []{1, 2}.ToList() }</param>
+        /// <param name="selectColumns">eg: p => p.Id or p => new { p.Id, p.Name }</param>
         /// <returns></returns>
         internal static IQuery<T> GetListByBulk<T>(object whereConditions, Expression<Func<T, object>> selectColumns) where T : new()
         {
@@ -74,7 +74,7 @@ namespace ExecuteSqlBulk
                 Where = where
             };
 
-            //列
+            // Columns
             var cols = selectColumns.GetColumns();
             if (cols != null && cols.Count > 0)
             {
@@ -92,12 +92,12 @@ namespace ExecuteSqlBulk
         }
 
         /// <summary>
-        /// 批量获取列表(依赖Dapper)
+        /// Get list in bulk based on "like" keyword search (depends on Dapper)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="likeColumns">eg:p => new { p.Id, p.Name }</param>
-        /// <param name="keywords">搜索关键词集合</param>
-        /// <param name="param">返回参数</param>
+        /// <param name="keywords">List of search keywords</param>
+        /// <param name="param">Return parameters</param>
         /// <returns></returns>
         internal static IQuery<T> GetListByBulkLike<T>(Func<T, object> likeColumns, List<string> keywords, out Dictionary<string, object> param) where T : new()
         {
@@ -155,7 +155,7 @@ namespace ExecuteSqlBulk
         }
 
         /// <summary>
-        /// 获取拼接的查询列
+        /// Get concatenated query columns
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="likeColumns"></param>

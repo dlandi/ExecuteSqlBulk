@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -14,7 +14,7 @@ namespace ExecuteSqlBulk
         }
 
         /// <summary>
-        /// 删除数据表所有数据
+        /// Delete all data from the table
         /// </summary>
         /// <param name="destinationTableName"></param>
         internal void BulkDelete(string destinationTableName)
@@ -26,12 +26,12 @@ namespace ExecuteSqlBulk
         }
 
         /// <summary>
-        /// 批量删除数据
+        /// Bulk delete data
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="destinationTableName">表名</param>
-        /// <param name="data">数据</param>
-        /// <param name="columnNameToMatchs">主键</param>
+        /// <param name="destinationTableName">Table name</param>
+        /// <param name="data">Data</param>
+        /// <param name="columnNameToMatchs">Primary key</param>
         internal int BulkDelete<T>(string destinationTableName, IEnumerable<T> data, List<string> columnNameToMatchs)
         {
             var tempTablename = "#" + destinationTableName + "_" + Guid.NewGuid().ToString("N");

@@ -8,7 +8,7 @@
         internal static Dialect DialectServer { get; set; } = Dialect.SqlServer;
 
         /// <summary>
-        /// 设置使用的数据库
+        /// Set the database in use
         /// </summary>
         /// <param name="dialect"></param>
         /// <returns></returns>
